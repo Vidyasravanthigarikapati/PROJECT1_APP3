@@ -7,14 +7,14 @@ require([
 ], function(WebScene, SceneView, Legend, LayerList, Search) {
 
   // Web Scene IDs
-  const chicagoSceneId = "fef6868cafcc420eb4bc2e78d54c38d7"; // Replace with actual Chicago webscene ID
-  const bostonSceneId = "8046207c1c214b5587230f5e5f8efc77"; // Replace with actual Boston webscene ID
+  const chicagoSceneId = "fef6868cafcc420eb4bc2e78d54c38d7";
+  const bostonSceneId = "8046207c1c214b5587230f5e5f8efc77";
 
   // Create WebScenes
   const chicagoScene = new WebScene({ portalItem: { id: chicagoSceneId } });
   const bostonScene = new WebScene({ portalItem: { id: bostonSceneId } });
 
-  // Initialize SceneView with Chicago as default
+  
   const view = new SceneView({
     container: "viewDiv",
     map: chicagoScene,
@@ -25,7 +25,7 @@ require([
     }
   });
 
-  // Add widgets
+
   const legend = new Legend({ view });
   const layerList = new LayerList({ view });
   const searchWidget = new Search({ view });

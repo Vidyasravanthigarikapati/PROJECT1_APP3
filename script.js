@@ -14,18 +14,18 @@ require([
   const chicagoScene = new WebScene({ portalItem: { id: chicagoSceneId } });
   const bostonScene = new WebScene({ portalItem: { id: bostonSceneId } });
 
-  
+  // Initialize SceneView 
   const view = new SceneView({
     container: "viewDiv",
     map: chicagoScene,
     camera: {
-      position: { x: -87.6298, y: 41.8781, z: 500 },
-      tilt: 65,
-      heading: 0
+      position: { x: -87.6298, y: 41.8781, z: 800 },
+      tilt: 75,
+      heading: 30
     }
   });
 
-
+  // Add widgets
   const legend = new Legend({ view });
   const layerList = new LayerList({ view });
   const searchWidget = new Search({ view });
@@ -34,27 +34,19 @@ require([
   view.ui.add(layerList, "top-left");
   view.ui.add(searchWidget, "top-left");
 
-  // --- Switch Button Logic ---
-  const switchBtn = document.getElementById("switchBtn");
-  let showingChicago = true;
+  // --- Button Logic ---
+  document.getElementById("chicagoBtn").addEventListener("click", () => {
+    view.map = chicagoScene;
+    view.camera.position = { x: -87.6298, y: 41.8781, z: 800 };
+    view.camera.tilt = 75;
+    view.camera.heading = 30;
+  });
 
-  switchBtn.addEventListener("click", () => {
-    if(showingChicago) {
-      // Switch to Boston
-      view.map = bostonScene;
-      view.camera.position = { x: -71.0589, y: 42.3601, z: 500 };
-      view.camera.tilt = 65;
-      view.camera.heading = 0;
-      switchBtn.textContent = "Chicago";
-    } else {
-      // Switch to Chicago
-      view.map = chicagoScene;
-      view.camera.position = { x: -87.6298, y: 41.8781, z: 500 };
-      view.camera.tilt = 65;
-      view.camera.heading = 0;
-      switchBtn.textContent = "Boston";
-    }
-    showingChicago = !showingChicago;
+  document.getElementById("bostonBtn").addEventListener("click", () => {
+    view.map = bostonScene;
+    view.camera.position = { x: -71.0589, y: 42.3601, z: 800 };
+    view.camera.tilt = 75;
+    view.camera.heading = 30;
   });
 
 });
